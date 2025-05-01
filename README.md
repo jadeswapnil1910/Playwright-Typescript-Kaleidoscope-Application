@@ -47,7 +47,8 @@ The project is organized as follows:
 
 - **`src/pages/`**: Contains page object models for the application pages.
 - **`src/data/`**: Includes test data files such as `My School Transcript.pdf`.
-- **`tests/`**: Contains the test scripts for the automation suite.
+- **`src/tests/`**: Contains the test scripts for the automation suite.
+- **`src/utils/`**: Contains utility functions and helper methods to support the test scripts.
 - **`playwright.config.ts`**: Configuration file for Playwright.
 
 ## How to Run the Tests
