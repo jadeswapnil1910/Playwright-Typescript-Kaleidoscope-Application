@@ -1,0 +1,12 @@
+{
+    "School": {
+      "name": "Greenwood High School",
+      "address": "1234 Maple Avenue",
+      "city": "New York",
+      "state": "California",
+      "zipCode": "62704",
+      "gpa": "7.85",
+      "year": "2025"
+    }
+  }
+  

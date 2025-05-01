@@ -1,0 +1,13 @@
+{
+    "firstName": "John",
+    "lastName": "Doe",
+    "phone": "+1234567890",
+    "password": "YzSL$rVE8fxGB!L",
+    "address": {
+        "street": "123 Main St",
+        "city": "New York",
+        "state": "California",
+        "country": "United States of America",
+        "zip": "12345"
+    }
+}
