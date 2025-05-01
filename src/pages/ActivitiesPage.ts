@@ -1,5 +1,5 @@
 import { Locator, Page, expect } from "@playwright/test";
-import BasePage from "../utils/basePage";
+import BasePage from "../utils/BasePage";
 import act from '../data/activityData.json';
 
 export class ActivitiesPage extends BasePage {
@@ -21,41 +21,40 @@ export class ActivitiesPage extends BasePage {
         this.page = page;
 
         // Initialize locators
-        this.pageTitle                  = this.page.getByTestId('page-title');
-        this.addEntryButton             = this.page.getByRole('button', { name: 'Add Entry' });
-        this.modalInner                 = this.page.locator('.mantine-Modal-inner');
-        this.activityNameInput          = this.modalInner.locator('input[placeholder="Short Input"]');
-        this.numberYearsInput           = this.modalInner.locator('input[placeholder="123"]');
-        this.leadershipRolesTextarea    = this.modalInner.locator('textarea[placeholder="Long Input"]').first();
-        this.descriptionTextarea        = this.modalInner.locator('textarea[placeholder="Long Input"]').last();
-        this.addButton                  = this.modalInner.getByRole('button', { name: 'Add', exact: true });
-        this.entryError                 = this.page.locator('#form-renderer');
+        this.pageTitle = this.page.getByTestId('page-title');
+        this.addEntryButton = this.page.getByRole('button', { name: 'Add Entry' });
+        this.modalInner = this.page.locator('.mantine-Modal-inner');  // Using Css selector as element has only a *class attribute
+        this.activityNameInput = this.modalInner.getByPlaceholder("Short Input");
+        this.numberYearsInput = this.modalInner.getByPlaceholder("123");
+        this.leadershipRolesTextarea = this.modalInner.getByPlaceholder("Long Input").first();
+        this.descriptionTextarea = this.modalInner.getByPlaceholder("Long Input").last();
+        this.addButton = this.modalInner.getByRole('button', { name: 'Add', exact: true });
+        this.entryError = this.page.getByText('Please add at least 2 entries');
     }
 
     async validateActivitiesPage() {
 
-        await this.$expectToContainText(this.pageTitle, 'Extracurricular Activities');
+        await this.expectToContainText(this.pageTitle, 'Extracurricular Activities');
     }
-
 
     async addEntryPopup(actNum: number) {
 
-        await this.$clickElement(this.addEntryButton);
+        await this.clickElement(this.addEntryButton);
         await this.page.waitForLoadState();
-        await this.$waitForElementVisible(this.modalInner);
-        await this.$expectToContainText(this.modalInner.locator('label').first(), 'Extracurricular Activity Name *');
-        await this.$textBoxFill(this.activityNameInput, act[actNum].ActivityName);
-        await this.$textBoxFill(this.numberYearsInput, act[actNum].NumberYears);
-        await this.$textBoxFill(this.leadershipRolesTextarea, act[actNum].leadershipRoles);
-        await this.$textBoxFill(this.descriptionTextarea, act[actNum].Description);
-        await this.$clickElement(this.addButton);
-        await this.page.waitForTimeout(4000);
+        await this.waitForElementVisible(this.modalInner);
+        await this.textBoxFill(this.activityNameInput, act[actNum].ActivityName);
+        await this.textBoxFill(this.numberYearsInput, act[actNum].NumberYears);
+        await this.textBoxFill(this.leadershipRolesTextarea, act[actNum].leadershipRoles);
+        await this.textBoxFill(this.descriptionTextarea, act[actNum].Description);
+        await this.clickElement(this.addButton);
+        await this.page.waitForTimeout(2000);
+        await this.clickSaveButton();
     }
 
-    async validateNumofActivities() {
+    async validateNumOfActivities() {
 
-        await this.$clickNextPageButton();
-        await this.$expectToContainText(this.entryError, 'Please add at least 2 entries');
+        await this.clickNextPageButton();
+        expect(await this.entryError.isVisible()).toBeTruthy();
         await this.page.waitForTimeout(2000);
     }
 }

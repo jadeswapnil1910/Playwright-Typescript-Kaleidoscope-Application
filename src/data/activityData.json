@@ -1,30 +1,30 @@
-{
-    "1": {
+[
+    {
       "ActivityName": "Student Council",
       "NumberYears": "3",
       "leadershipRoles": "President (Senior Year), Vice President (Junior Year)",
       "Description": "Planned and coordinated school events, fundraisers, and assemblies. Acted as a liaison between students and faculty, and advocated for student needs in administrative meetings."
     },
 
-    "2": {
+    {
       "ActivityName": "Debate Club",
       "NumberYears": "2",
       "leadershipRoles": "Team Captain",
       "Description": "Led practice debates, mentored junior members, and helped the team qualify for the National Debate Finals. Organized inter-school debate meets and workshops."
     },
 
-    "3": {
+    {
       "ActivityName": "Varsity Soccer Team",
       "NumberYears": "4",
       "leadershipRoles": "Team Co-Captain (Senior Year)",
       "Description": "Played in district and state-level tournaments. Organized team practices, motivated teammates, and assisted in coaching junior players. Helped the team reach state semifinals."
     },
     
-    "4": {
+    {
       "ActivityName": "School Newspaper (The Eagle Times)",
       "NumberYears": "2",
       "leadershipRoles": "Editor-in-Chief",
       "Description": "Oversaw content creation and publication, managed a team of writers and editors, and introduced a digital edition of the newspaper. Covered major school events and student features."
     }
-}
+]
   

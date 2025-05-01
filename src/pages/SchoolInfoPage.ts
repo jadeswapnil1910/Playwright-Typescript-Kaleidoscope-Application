@@ -1,5 +1,5 @@
 import { Locator, Page } from "@playwright/test";
-import BasePage from "../utils/basePage";
+import BasePage from "../utils/BasePage";
 import schooldata from '../data/schoolData.json';
 
 export class SchoolInfoPage extends BasePage {
@@ -36,25 +36,24 @@ export class SchoolInfoPage extends BasePage {
         this.formRenderer = this.page.locator('#form-renderer');
     }
 
-
     async fillSchoolDetails() {   
         
         // Verify page title
-        await this.$expectToContainText(this.pageTitle, 'High School Information');
+        await this.expectToContainText(this.pageTitle, 'High School Information');
     
         // Fill school details
-        await this.$textBoxFill(this.highSchoolNameInput, schooldata.School.name);
-        await this.$textBoxFill(this.highSchoolAddressInput, schooldata.School.address);
-        await this.$textBoxFill(this.highSchoolCityInput, schooldata.School.city);
+        await this.textBoxFill(this.highSchoolNameInput, schooldata.School.name);
+        await this.textBoxFill(this.highSchoolAddressInput, schooldata.School.address);
+        await this.textBoxFill(this.highSchoolCityInput, schooldata.School.city);
 
         // Select state
-        await this.$clickElement(this.highSchoolStateInput);
-        await this.$clickElement(this.highSchoolStateOption);
+        await this.clickElement(this.highSchoolStateInput);
+        await this.clickElement(this.highSchoolStateOption);
 
         // Fill remaining details
-        await this.$textBoxFill(this.highSchoolZipCodeInput, schooldata.School.zipCode);
-        await this.$textBoxFill(this.gpaInput, schooldata.School.gpa);
-        await this.$textBoxFill(this.graduationYearInput, schooldata.School.year);
+        await this.textBoxFill(this.highSchoolZipCodeInput, schooldata.School.zipCode);
+        await this.textBoxFill(this.gpaInput, schooldata.School.gpa);
+        await this.textBoxFill(this.graduationYearInput, schooldata.School.year);
 
         // Upload file
         await this.uploadFile('src/data/My School Transcript.pdf', 'My School Transcript.pdf');
@@ -65,13 +64,13 @@ export class SchoolInfoPage extends BasePage {
         // Handle file upload
         const [fileChooser] = await Promise.all([
             this.page.waitForEvent('filechooser'),
-            this.$clickElement(this.uploadFileButton),
+            this.clickElement(this.uploadFileButton),
         ]);
         await fileChooser.setFiles([filePath]);
         
         await this.page.waitForTimeout(5000);
         // Verify uploaded file
-        await this.$waitForElementVisible(this.formRenderer);
-        await this.$expectToContainText(this.formRenderer, expectedFileName);
+        await this.waitForElementVisible(this.formRenderer);
+        await this.expectToContainText(this.formRenderer, expectedFileName);
     }
 }
