@@ -39,7 +39,10 @@ test.only('End-to-End Kaleidoscope Application Submission Flow', async ({ page,
         await activitiesPg.validateActivitiesPage();
         await activitiesPg.addEntryPopup(1);    
         await activitiesPg.validateNumofActivities();
-        await activitiesPg.addEntryPopup(2);
+        for (let index = 2; index <= 4; index++) {
+
+            await activitiesPg.addEntryPopup(index);
+        }
         await activitiesPg.$clickSaveButton();
         await activitiesPg.$clickNextPageButton();
     });
